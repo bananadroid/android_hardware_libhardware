@@ -12,6 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "hardware_libhardware_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["hardware_libhardware_license"],
+}
+
 cc_defaults {
     name: "hid_defaults",
     cflags: [
@@ -36,6 +45,7 @@ cc_library {
         "HidParser.cpp",
         "HidReport.cpp",
         "HidTree.cpp",
+        "HidUtils.cpp",
     ],
     export_include_dirs: ["."],
 
@@ -90,3 +100,20 @@ cc_test_host {
 
     local_include_dirs: ["test"],
 }
+
+//
+// Test for HidUtils
+//
+cc_test_host {
+    name: "hid_utils_test",
+    defaults: ["hid_defaults"],
+
+    srcs: ["test/CopyBitsTest.cpp"],
+
+    shared_libs: [
+        "libhidparser",
+    ],
+
+    local_include_dirs: ["test"],
+}
+
